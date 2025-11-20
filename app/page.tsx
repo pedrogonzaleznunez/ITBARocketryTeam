@@ -30,7 +30,9 @@ import SpecsSection from '@/components/sections/SpecsSection';
 import GallerySection from '@/components/sections/GallerySection';
 import CTASection from '@/components/sections/CTASection';
 import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
-import SectionDivider from '@/components/dividers/SectionDivider';
+import StarsDivider from '@/components/dividers/StarsDivider';
+import RockerDivider from '@/components/dividers/RockerDivider';
+import SmoothIgnitionDivider from '@/components/dividers/SmothIgnitionDivider';
 
 export default function Home() {
   return (
@@ -39,13 +41,13 @@ export default function Home() {
       
       <main>
         <HeroSection />
-        {/* <SectionDivider /> */}
+        {/* <SmoothIgnitionDivider /> */}
         <TeamSection />
-        <SectionDivider />
+        <RockerDivider /> {/* Moving Rocket */}
         <HighlightsSection />
-        <SectionDivider />
+        <StarsDivider />
         <StatsSection />
-        <SectionDivider />
+        <StarsDivider />
         <SpecsSection />
         <GallerySection />
         <CTASection />
