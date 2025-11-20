@@ -52,7 +52,7 @@ export default function Home() {
         <SpecsSection />
         <StarsDivider />
         <GallerySection />
-        <StarsDivider />
+        {/* <StarsDivider /> */}
         <SponsorsSection />
         <CTASection />
       </main>

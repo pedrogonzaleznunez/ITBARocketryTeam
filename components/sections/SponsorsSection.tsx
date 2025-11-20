@@ -137,7 +137,7 @@ export default function SponsorsSection() {
   const totalSquares = calculateTotalSquares(cols, sponsors.length);
 
   return (
-    <Section id="sponsors" className="bg-[#111727] text-white">
+    <Section id="sponsors" className="bg-[#ffffff] text-[#111727]">
       <div ref={sectionRef} className="max-w-6xl mx-auto">
         <Reveal>
           <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold tracking-tight mb-6 lg:mb-8 text-center">
