@@ -41,14 +41,15 @@ export default function Home() {
       
       <main>
         <HeroSection />
-        {/* <SmoothIgnitionDivider /> */}
+        {/* <SmoothIgnitionDivider /> */} 
         <TeamSection />
-        <RockerDivider /> {/* Moving Rocket */}
+        <RockerDivider /> 
         <HighlightsSection />
         <StarsDivider />
         <StatsSection />
         <StarsDivider />
         <SpecsSection />
+        <StarsDivider />
         <GallerySection />
         <CTASection />
       </main>

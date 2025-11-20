@@ -7,10 +7,27 @@
  * Lazy-loaded images with reveal animations.
  */
 
+import Image from 'next/image';
 import Section from '@/components/Section';
 import Reveal from '@/components/Reveal';
 
-const galleryItems = [
+type GalleryItem = {
+  alt: string;
+  caption: string;
+  src?: string;
+};
+
+const galleryItems: GalleryItem[] = [
+  {
+    src: '/placa_electronica.JPG',
+    alt: 'Placa electrónica vista bajo microscopio',
+    caption: 'Integración y pruebas de electrónica de vuelo',
+  },
+  {
+    src: '/lucas_trabajando.JPG',
+    alt: 'Lucas trabajando en el laboratorio',
+    caption: 'Fabricación de componentes en el laboratorio ITBA',
+  },
   {
     alt: 'Cohete en plataforma de lanzamiento',
     caption: 'Preparación final antes del despegue',
@@ -18,14 +35,6 @@ const galleryItems = [
   {
     alt: 'Motor de propulsión',
     caption: 'Sistema de propulsión híbrido de 2000N',
-  },
-  {
-    alt: 'Equipo trabajando',
-    caption: 'Nuestro equipo de ingenieros',
-  },
-  {
-    alt: 'Lanzamiento exitoso',
-    caption: 'Alcanzando nuevas alturas',
   },
   {
     alt: 'Telemetría en tiempo real',
@@ -55,22 +64,32 @@ export default function GallerySection() {
           {galleryItems.map((item, index) => (
             <Reveal key={index} delay={0.1 * index}>
               <div className="relative group overflow-hidden bg-gray-200 dark:bg-gray-800">
-                {/* Placeholder with gradient (replace with actual images) */}
-                <div className="aspect-[16/9] lg:aspect-[21/9] flex items-center justify-center relative">
-                  {/* Gradient placeholder */}
-                  <div
-                    className="absolute inset-0 bg-gradient-to-br opacity-60"
-                    style={{
-                      backgroundImage: `linear-gradient(${135 + index * 30}deg, 
-                        hsl(${200 + index * 20}, 70%, 50%), 
-                        hsl(${250 + index * 15}, 60%, 40%))`,
-                    }}
-                  />
-                  
-                  {/* Image icon */}
-                  <div className="relative z-10 text-white/80 text-6xl">
-                    📸
-                  </div>
+                <div className="aspect-[16/9] lg:aspect-[21/9] relative">
+                  {item.src ? (
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      className="object-cover object-center"
+                      sizes="(min-width: 1024px) 80vw, 100vw"
+                      priority={index === 0}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                    />
+                  ) : (
+                    <>
+                      <div
+                        className="absolute inset-0 bg-gradient-to-br opacity-60"
+                        style={{
+                          backgroundImage: `linear-gradient(${135 + index * 30}deg, 
+                            hsl(${200 + index * 20}, 70%, 50%), 
+                            hsl(${250 + index * 15}, 60%, 40%))`,
+                        }}
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center text-white/80 text-6xl">
+                        📸
+                      </div>
+                    </>
+                  )}
 
                   {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500" />
