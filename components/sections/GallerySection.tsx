@@ -59,10 +59,34 @@ export default function GallerySection() {
           </Reveal>
         </div>
 
+        {/* Video Section */}
+        <section className="bg-black py-12 lg:py-16" aria-label="Video de lanzamiento">
+          <div className="container-custom">
+            <Reveal>
+              <div className="rounded-3xl overflow-hidden border border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.45)]">
+                <video
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls={false}
+                  poster="/sequence/frame_1.jpeg"
+                >
+                  <source src="/videos/despegue.webm" type="video/webm" />
+                  <source src="/videos/despegue.mov" type="video/mp4" />
+                  Tu navegador no soporta video HTML5.
+                </video>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
         {/* Gallery Grid */}
-        <div className="space-y-4">
+        <div className="space-y-4 mt-4">
+
           {galleryItems.map((item, index) => (
-            <Reveal key={index} delay={0.1 * index}>
+            <Reveal key={index} delay={0.1 * (index + 1)}>
               <div className="relative group overflow-hidden bg-gray-200 dark:bg-gray-800">
                 <div className="aspect-[16/9] lg:aspect-[21/9] relative">
                   {item.src ? (

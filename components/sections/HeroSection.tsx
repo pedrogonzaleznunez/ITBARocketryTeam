@@ -13,6 +13,7 @@ import { useEffect, useRef } from 'react';
 
 import CanvasSequence from '@/components/CanvasSequence';
 import { gsap } from '@/lib/gsap';
+import Countdown from '@/components/Countdown';
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -91,14 +92,22 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* Right: Canvas Sequence */}
-            {/* <div className="relative aspect-[4/3] lg:aspect-square rounded-2xl overflow-hidden shadow-2xl">
-              <CanvasSequence
-                frameCount={30}
-                pathTemplate="/sequence/frame_1.jpeg"
-                className="w-full h-full"
-              />
-            </div> */}
+            {/* Right: Countdown positioned at bottom */}
+            <div className="flex items-end justify-end pt-20 lg:pt-0">
+              <div className="w-full max-w-md">
+                <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+                  <div className="text-center mb-4">
+                    <p className="text-sm md:text-base text-white/90 uppercase tracking-wider mb-2">
+                      Próxima Misión
+                    </p>
+                    <p className="text-lg md:text-xl font-semibold text-white">
+                      1 de Febrero, 2026
+                    </p>
+                  </div>
+                  <Countdown targetDate={new Date('2026-02-01T00:00:00')} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
