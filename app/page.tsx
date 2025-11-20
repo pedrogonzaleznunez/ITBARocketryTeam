@@ -30,6 +30,7 @@ import SpecsSection from '@/components/sections/SpecsSection';
 import GallerySection from '@/components/sections/GallerySection';
 import CTASection from '@/components/sections/CTASection';
 import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
+import SectionDivider from '@/components/dividers/SectionDivider';
 
 export default function Home() {
   return (
@@ -38,6 +39,7 @@ export default function Home() {
       
       <main>
         <HeroSection />
+        <SectionDivider />
         <TeamSection />
         <HighlightsSection />
         <StatsSection />
