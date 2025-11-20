@@ -46,36 +46,6 @@ export default function CTASection() {
             </a>
           </div>
         </Reveal>
-
-        {/* Stats */}
-        <Reveal delay={0.3}>
-          <div className="grid grid-cols-3 gap-8 mt-20 lg:mt-24 pt-16 border-t border-gray-700">
-            <div>
-              <div className="text-4xl lg:text-5xl font-bold text-gradient mb-2">
-                50+
-              </div>
-              <div className="text-sm lg:text-base text-gray-400">
-                Lanzamientos exitosos
-              </div>
-            </div>
-            <div>
-              <div className="text-4xl lg:text-5xl font-bold text-gradient mb-2">
-                3.5km
-              </div>
-              <div className="text-sm lg:text-base text-gray-400">
-                Altitud máxima
-              </div>
-            </div>
-            <div>
-              <div className="text-4xl lg:text-5xl font-bold text-gradient mb-2">
-                25+
-              </div>
-              <div className="text-sm lg:text-base text-gray-400">
-                Miembros del equipo
-              </div>
-            </div>
-          </div>
-        </Reveal>
       </div>
     </Section>
   );

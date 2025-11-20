@@ -24,6 +24,7 @@ import CanvasSequence from '@/components/CanvasSequence';
 import SmoothScroller from '@/components/SmoothScroller';
 import HeroSection from '@/components/sections/HeroSection';
 import HighlightsSection from '@/components/sections/HighlightsSection';
+import StatsSection from '@/components/sections/StatsSection';
 import SpecsSection from '@/components/sections/SpecsSection';
 import GallerySection from '@/components/sections/GallerySection';
 import CTASection from '@/components/sections/CTASection';
@@ -36,6 +37,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <HighlightsSection />
+        <StatsSection />
         <SpecsSection />
         <GallerySection />
         <CTASection />
