@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://itbarocketry.com'),
   
   icons: {
-    icon: '/sequence/ITBA_Rocketry_Team-Redondo.png',
-    apple: '/sequence/ITBA_Rocketry_Team-Redondo.png',
-    shortcut: '/sequence/ITBA_Rocketry_Team-Redondo.png',
+    icon: '/sequence/ITBA_Rocketry_Team-Redondo.webp',
+    apple: '/sequence/ITBA_Rocketry_Team-Redondo.webp',
+    shortcut: '/sequence/ITBA_Rocketry_Team-Redondo.webp',
   },
   
   openGraph: {

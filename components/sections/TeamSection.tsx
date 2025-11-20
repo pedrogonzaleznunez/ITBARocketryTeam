@@ -38,7 +38,7 @@ const teamHighlights = [
 
 const teamPhotos = [
   {
-    src: '/sequence/team_sdt.jpeg',
+    src: '/sequence/Team_SDT.webp',
     alt: 'Equipo ITBA Rocketry en el campus',
     title: 'ITBA Rocketry Team',
     subtitle: 'Campus ITBA · SDT',

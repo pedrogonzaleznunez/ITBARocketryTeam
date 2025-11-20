@@ -13,9 +13,12 @@ import { useEffect, useRef } from 'react';
 
 import CanvasSequence from '@/components/CanvasSequence';
 import { gsap } from '@/lib/gsap';
-import Countdown from '@/components/Countdown';
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
+import Countdown from '../Countdown';
+
 
 export default function HeroSection() {
+  const scrollTo = useSmoothScroll();
   const sectionRef = useRef<HTMLElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
 
@@ -51,7 +54,7 @@ export default function HeroSection() {
       <div
         ref={backgroundRef}
         className="pointer-events-none absolute inset-0 -z-10 bg-cover bg-center will-change-transform"
-        style={{ backgroundImage: 'url(/sequence/frame_1.jpeg)' }}
+        style={{ backgroundImage: 'url(/sequence/Launch.webp)' }}
         aria-hidden
       />
       <div
@@ -83,15 +86,14 @@ export default function HeroSection() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <a href="#cta" className="btn-primary">
+                <a href="#cta" onClick={(e) => scrollTo(e, 'cta')} className="btn-primary">
                   Ver nuestro trabajo
                 </a>
-                <a href="#highlights" className="btn-ghost">
+                <a href="#highlights" onClick={(e) => scrollTo(e, 'highlights')} className="btn-ghost">
                   Conocer más
                 </a>
               </div>
             </div>
-
             {/* Right: Countdown positioned at bottom */}
             <div className="flex items-end justify-end pt-20 lg:pt-0">
               <div className="w-full max-w-md">
@@ -108,6 +110,14 @@ export default function HeroSection() {
                 </div>
               </div>
             </div>
+            {/* Right: Canvas Sequence */}
+            {/* <div className="relative aspect-[4/3] lg:aspect-square rounded-2xl overflow-hidden shadow-2xl">
+              <CanvasSequence
+                frameCount={30}
+                pathTemplate="/sequence/Launch.webp"
+                className="w-full h-full"
+              />
+            </div> */}
           </div>
         </div>
       </div>

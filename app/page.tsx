@@ -28,6 +28,7 @@ import HighlightsSection from '@/components/sections/HighlightsSection';
 import StatsSection from '@/components/sections/StatsSection';
 import SpecsSection from '@/components/sections/SpecsSection';
 import GallerySection from '@/components/sections/GallerySection';
+import SponsorsSection from '@/components/sections/SponsorsSection';
 import CTASection from '@/components/sections/CTASection';
 import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
 import StarsDivider from '@/components/dividers/StarsDivider';
@@ -51,6 +52,8 @@ export default function Home() {
         <SpecsSection />
         <StarsDivider />
         <GallerySection />
+        <StarsDivider />
+        <SponsorsSection />
         <CTASection />
       </main>
 
