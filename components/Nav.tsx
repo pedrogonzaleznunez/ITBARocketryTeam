@@ -60,7 +60,7 @@ export default function Nav() {
                 : "w-0"
             )}>
               <Image
-                src="/sequence/ITBA_Rocketry_Team-Redondo_SinFondo.png"
+                src="/sequence/ITBA_Rocketry_Team-Redondo_SinFondo.webp"
                 alt="ITBA Rocketry Team Logo"
                 width={80}
                 height={80}
@@ -70,6 +70,7 @@ export default function Nav() {
                     ? "opacity-100 scale-100 translate-x-0 delay-200" 
                     : "opacity-0 scale-95 -translate-x-8"
                 )}
+                style={{ width: 'auto', height: 'auto' }}
                 priority
               />
             </div>
