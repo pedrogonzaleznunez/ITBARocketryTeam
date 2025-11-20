@@ -23,6 +23,7 @@ import Reveal from '@/components/Reveal';
 import CanvasSequence from '@/components/CanvasSequence';
 import SmoothScroller from '@/components/SmoothScroller';
 import HeroSection from '@/components/sections/HeroSection';
+import TeamSection from '@/components/sections/TeamSection';
 import HighlightsSection from '@/components/sections/HighlightsSection';
 import StatsSection from '@/components/sections/StatsSection';
 import SpecsSection from '@/components/sections/SpecsSection';
@@ -37,6 +38,7 @@ export default function Home() {
       
       <main>
         <HeroSection />
+        <TeamSection />
         <HighlightsSection />
         <StatsSection />
         <SpecsSection />
