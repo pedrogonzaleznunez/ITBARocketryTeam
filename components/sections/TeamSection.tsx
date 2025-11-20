@@ -67,6 +67,7 @@ export default function TeamSection() {
                   Integramos investigación, diseño y pruebas en ciclos rápidos para
                   llevar los cohetes estudiantiles de Latinoamérica a un nuevo nivel.
                 </p>
+                <br />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-gray-200/60 dark:border-gray-800/60">

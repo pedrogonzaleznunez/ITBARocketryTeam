@@ -72,7 +72,7 @@ export default function SpecsSection() {
   }, []);
 
   return (
-    <div ref={sectionRef} className="relative min-h-screen bg-gray-900 text-white">
+    <div ref={sectionRef} className="relative min-h-screen bg-[#111727] text-white">
       <Section>
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-screen">
           {/* Left: Current step info */}

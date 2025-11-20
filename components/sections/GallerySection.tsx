@@ -35,7 +35,7 @@ const galleryItems = [
 
 export default function GallerySection() {
   return (
-    <Section id="gallery" className="bg-white dark:bg-gray-900" noPadding>
+    <Section id="gallery" className="bg-[#111727]" noPadding>
       <div className="py-16 md:py-24 lg:py-32">
         <div className="container-custom mb-16 lg:mb-20">
           <Reveal>

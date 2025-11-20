@@ -39,10 +39,13 @@ export default function Home() {
       
       <main>
         <HeroSection />
-        <SectionDivider />
+        {/* <SectionDivider /> */}
         <TeamSection />
+        <SectionDivider />
         <HighlightsSection />
+        <SectionDivider />
         <StatsSection />
+        <SectionDivider />
         <SpecsSection />
         <GallerySection />
         <CTASection />

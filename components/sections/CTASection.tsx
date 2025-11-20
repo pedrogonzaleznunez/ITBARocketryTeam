@@ -12,7 +12,7 @@ import Reveal from '@/components/Reveal';
 
 export default function CTASection() {
   return (
-    <Section id="cta" className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+    <Section id="cta" className="bg-[#111727] text-white">
       <div className="max-w-4xl mx-auto text-center">
         <Reveal>
           <h2 className="text-fluid-4xl lg:text-fluid-6xl font-bold tracking-tight mb-6 lg:mb-8">

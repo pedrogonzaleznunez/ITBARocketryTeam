@@ -60,7 +60,7 @@ export default function HighlightsSection() {
   }, []);
 
   return (
-    <Section id="highlights" className="bg-gray-50 dark:bg-gray-800/50">
+    <Section id="highlights" className="bg-[#111727]">
       <div className="text-center mb-16 lg:mb-20">
         <Reveal>
           <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold tracking-tight mb-6">
