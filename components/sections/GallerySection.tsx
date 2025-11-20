@@ -71,7 +71,7 @@ export default function GallerySection() {
                   loop
                   playsInline
                   controls={false}
-                  poster="/sequence/frame_1.jpeg"
+                  poster="/sequence/Launch.webp"
                 >
                   <source src="/videos/despegue.webm" type="video/webm" />
                   <source src="/videos/despegue.mov" type="video/mp4" />

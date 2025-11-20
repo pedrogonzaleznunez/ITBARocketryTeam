@@ -8,6 +8,7 @@
  */
 
 import { useRef, useEffect } from 'react';
+import Image from 'next/image';
 import Section from '@/components/Section';
 import Reveal from '@/components/Reveal';
 import { useElementVisible } from '@/hooks/useElementVisible';
@@ -191,11 +192,13 @@ export default function SponsorsSection() {
                   }
                 `}
               >
-                <div className="w-full h-full flex items-center justify-center p-4">
-                  <img
+                <div className="w-full h-full flex items-center justify-center p-4 relative">
+                  <Image
                     src={sponsor.logo}
                     alt={`${sponsor.name} logo`}
-                    className="object-contain max-w-full max-h-full"
+                    width={LOGO_SIZE}
+                    height={LOGO_SIZE}
+                    className="object-contain"
                     style={{ 
                       maxWidth: `${LOGO_SIZE}px`, 
                       maxHeight: `${LOGO_SIZE}px`,

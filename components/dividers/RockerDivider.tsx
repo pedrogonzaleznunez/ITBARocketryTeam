@@ -3,44 +3,59 @@
 import { useEffect, useRef } from 'react';
 
 const RockerDivider = () => {
-  const rocketRef = useRef<SVGSVGElement | null>(null);
+  const rocketRef = useRef<SVGGElement | null>(null);
   const pathRef = useRef<SVGPathElement | null>(null);
+  const animationFrameRef = useRef<number | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const path = pathRef.current;
-    const rocket = rocketRef.current;
+    // Pequeño delay para asegurar que el DOM esté completamente renderizado
+    timeoutRef.current = setTimeout(() => {
+      const path = pathRef.current;
+      const rocket = rocketRef.current;
 
-    if (!path || !rocket) return;
+      if (!path || !rocket) return;
 
-    const pathLength = path.getTotalLength();
-    const duration = 8000;
-    const rocketWidth = 20;
-    const rocketHeight = 80;
+      const pathLength = path.getTotalLength();
+      const duration = 8000;
+      const rocketWidth = 20;
+      const rocketHeight = 80;
 
-    let start: number | null = null;
+      let start: number | null = null;
 
-    const animate = (timestamp: number) => {
-      if (!start) start = timestamp;
-      const elapsed = timestamp - start;
-      const t = (elapsed % duration) / duration;
+      const animate = (timestamp: number) => {
+        if (!start) start = timestamp;
+        const elapsed = timestamp - start;
+        const t = (elapsed % duration) / duration;
 
-      const currentPoint = path.getPointAtLength(t * pathLength);
-      const nextPoint = path.getPointAtLength((t + 0.01) * pathLength);
+        const currentPoint = path.getPointAtLength(t * pathLength);
+        const nextPoint = path.getPointAtLength((t + 0.01) * pathLength);
 
-      const angle =
-        (Math.atan2(nextPoint.y - currentPoint.y, nextPoint.x - currentPoint.x) * 180) /
-        Math.PI;
+        const angle =
+          (Math.atan2(nextPoint.y - currentPoint.y, nextPoint.x - currentPoint.x) * 180) /
+          Math.PI;
 
-      const orientationOffset = 90;
-      rocket.setAttribute(
-        'transform',
-        `translate(${currentPoint.x - rocketWidth / 2}, ${currentPoint.y - rocketHeight / 2}) rotate(${angle + orientationOffset})`
-      );
+        const orientationOffset = 90;
+        rocket.setAttribute(
+          'transform',
+          `translate(${currentPoint.x - rocketWidth / 2}, ${currentPoint.y - rocketHeight / 2}) rotate(${angle + orientationOffset})`
+        );
 
-      requestAnimationFrame(animate);
+        animationFrameRef.current = requestAnimationFrame(animate);
+      };
+
+      animationFrameRef.current = requestAnimationFrame(animate);
+    }, 100);
+
+    // Cleanup function
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      if (animationFrameRef.current !== null) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     };
-
-    requestAnimationFrame(animate);
   }, []);
 
   return (
@@ -83,33 +98,29 @@ const RockerDivider = () => {
         opacity="0.6"
       />
 
-      {/* SVG del cohete, forma realista y minimalista basada en la imagen */}
-      <svg
+      {/* Grupo del cohete, forma realista y minimalista basada en la imagen */}
+      <g
         ref={rocketRef}
         className="rocket"
-        width="20"
-        height="80"
-        viewBox="0 0 20 80"
+        transform="translate(0, 0)"
       >
-        <g>
-          {/* Nariz cónica */}
-          <polygon points="10,0 14,10 6,10" fill="#D1D5DB" />
+        {/* Nariz cónica */}
+        <polygon points="10,0 14,10 6,10" fill="#D1D5DB" />
 
-          {/* Cuerpo principal */}
-          <rect x="6" y="10" width="8" height="50" rx="2" fill="#94A3B8" />
+        {/* Cuerpo principal */}
+        <rect x="6" y="10" width="8" height="50" rx="2" fill="#94A3B8" />
 
-          {/* División modular (anillos) */}
-          <rect x="6" y="22" width="8" height="2" fill="#CBD5E1" />
-          <rect x="6" y="36" width="8" height="2" fill="#CBD5E1" />
+        {/* División modular (anillos) */}
+        <rect x="6" y="22" width="8" height="2" fill="#CBD5E1" />
+        <rect x="6" y="36" width="8" height="2" fill="#CBD5E1" />
 
-          {/* Aletas (trapezoidales) */}
-          <polygon points="6,60 2,75 6,75" fill="#9CA3AF" />
-          <polygon points="14,60 18,75 14,75" fill="#9CA3AF" />
+        {/* Aletas (trapezoidales) */}
+        <polygon points="6,60 2,75 6,75" fill="#9CA3AF" />
+        <polygon points="14,60 18,75 14,75" fill="#9CA3AF" />
 
-          {/* Motor base */}
-          <rect x="8" y="75" width="4" height="5" fill="#0EA5E9" />
-        </g>
-      </svg>
+        {/* Motor base */}
+        <rect x="8" y="75" width="4" height="5" fill="#0EA5E9" />
+      </g>
     </svg>
   );
 };
