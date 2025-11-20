@@ -28,6 +28,7 @@ import StatsSection from '@/components/sections/StatsSection';
 import SpecsSection from '@/components/sections/SpecsSection';
 import GallerySection from '@/components/sections/GallerySection';
 import CTASection from '@/components/sections/CTASection';
+import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 export default function Home() {
   return (
@@ -48,14 +49,21 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
             <p>&copy; 2025 ITBA Rocketry Team. Todos los derechos reservados.</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-gray-900 dark:hover:text-white transition-colors focus-ring rounded">
-                Instagram
+              <a 
+                href="https://www.instagram.com/itbarocketry/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="hover:text-gray-900 dark:hover:text-white transition-colors focus-ring rounded p-2"
+              >
+                <FaInstagram className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-gray-900 dark:hover:text-white transition-colors focus-ring rounded">
-                LinkedIn
-              </a>
-              <a href="#" className="hover:text-gray-900 dark:hover:text-white transition-colors focus-ring rounded">
-                GitHub
+              <a 
+                href="https://www.linkedin.com/company/itba-rocketry/posts/?feedView=all" 
+                aria-label="LinkedIn"
+                className="hover:text-gray-900 dark:hover:text-white transition-colors focus-ring rounded p-2"
+              >
+                <FaLinkedin className="w-5 h-5" />
               </a>
             </div>
           </div>

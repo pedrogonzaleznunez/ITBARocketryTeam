@@ -9,9 +9,17 @@
 
 import { useEffect, useState } from 'react';
 import clsx from 'clsx';
+import Image from 'next/image';
+import { useSectionPassed } from '@/hooks/useSectionPassed';
 
 export default function Nav() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const hasPassedHero = useSectionPassed({
+    elementId: 'hero',
+    threshold: 0,
+    rootMargin: '-100px 0px 0px 0px',
+    invert: true, // true cuando se pasa (no está visible)
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,10 +52,25 @@ export default function Nav() {
           {/* Brand */}
           <a
             href="#hero"
-            className="text-xl md:text-2xl font-bold tracking-tight focus-ring rounded-lg px-2 -ml-2"
+            className="flex items-center gap-3 focus-ring rounded-lg px-2 -ml-2 transition-all duration-500"
             aria-label="ITBA Rocketry Team - Inicio"
           >
-            <span className="text-gradient">ITBA Rocketry</span>
+            <Image
+              src="/sequence/ITBA_Rocketry_Team-Redondo_SinFondo.png"
+              alt="ITBA Rocketry Team Logo"
+              width={80}
+              height={80}
+              className={clsx(
+                "w-16 h-16 md:w-20 md:h-20 transition-all duration-500 ease-out",
+                hasPassedHero 
+                  ? "opacity-100 scale-100 translate-x-0" 
+                  : "opacity-0 scale-95 -translate-x-2 pointer-events-none"
+              )}
+              priority
+            />
+            <span className="text-xl md:text-2xl font-bold tracking-tight text-gradient">
+              ITBA Rocketry
+            </span>
           </a>
 
           {/* CTA Button */}
