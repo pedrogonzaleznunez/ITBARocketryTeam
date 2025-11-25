@@ -1,20 +1,20 @@
 /**
- * Homepage - ITBA Rocketry Team Landing
+ * Página Principal - ITBA Rocketry Team Landing
  * 
- * Single-page landing with smooth scrolling and scroll-driven animations.
+ * Landing de una sola página con scroll suave y animaciones controladas por scroll.
  * 
- * HOW TO ADD IMAGE SEQUENCE FRAMES:
- * 1. Create a folder: /public/sequence/
- * 2. Add numbered JPG files: frame_0001.jpg, frame_0002.jpg, ..., frame_0030.jpg
- * 3. Recommended: 30-60 frames, 1600-2000px width, optimized JPGs
- * 4. If frames are missing, a gradient fallback will display
+ * CÓMO AGREGAR FRAMES DE SECUENCIA DE IMÁGENES:
+ * 1. Crear una carpeta: /public/sequence/
+ * 2. Agregar archivos JPG numerados: frame_0001.jpg, frame_0002.jpg, ..., frame_0030.jpg
+ * 3. Recomendado: 30-60 frames, 1600-2000px de ancho, JPGs optimizados
+ * 4. Si faltan frames, se mostrará un gradiente de respaldo
  * 
- * SECTIONS:
- * - Hero: Full-viewport with canvas sequence
- * - Highlights: Feature grid with reveals
- * - Specs: Sticky step-by-step story
- * - Gallery: Edge-to-edge media showcase
- * - CTA: Final call-to-action
+ * SECCIONES:
+ * - Hero: Viewport completo con secuencia de canvas
+ * - Highlights: Grid de características con reveals
+ * - Specs: Historia paso a paso sticky
+ * - Gallery: Showcase de medios edge-to-edge
+ * - CTA: Call-to-action final
  */
 
 import Nav from '@/components/Nav';
@@ -30,7 +30,7 @@ import SpecsSection from '@/components/sections/SpecsSection';
 import GallerySection from '@/components/sections/GallerySection';
 import SponsorsSection from '@/components/sections/SponsorsSection';
 import CTASection from '@/components/sections/CTASection';
-import { FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa';
+import SocialLinks from '@/components/SocialLinks';
 import StarsDivider from '@/components/dividers/StarsDivider';
 import RockerDivider from '@/components/dividers/RockerDivider';
 import SmoothIgnitionDivider from '@/components/dividers/SmothIgnitionDivider';
@@ -42,8 +42,10 @@ export default function Home() {
       
       <main>
         <HeroSection />
-        {/* <SmoothIgnitionDivider /> */} 
+        <StarsDivider />
         <TeamSection />
+        <StarsDivider />
+        <SponsorsSection />
         <RockerDivider /> 
         <HighlightsSection />
         <StarsDivider />
@@ -52,8 +54,6 @@ export default function Home() {
         <SpecsSection />
         <StarsDivider />
         <GallerySection />
-        {/* <StarsDivider /> */}
-        <SponsorsSection />
         <CTASection />
       </main>
 
@@ -61,24 +61,7 @@ export default function Home() {
         <div className="container-custom">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
             <p>&copy; 2025 ITBA Rocketry Team. Todos los derechos reservados.</p>
-            <div className="flex gap-6">
-              <a 
-                href="https://www.instagram.com/itbarocketry/" 
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="hover:text-gray-900 dark:hover:text-white transition-colors focus-ring rounded p-2"
-              >
-                <FaInstagram className="w-5 h-5" />
-              </a>
-              <a 
-                href="https://www.linkedin.com/company/itba-rocketry/posts/?feedView=all" 
-                aria-label="LinkedIn"
-                className="hover:text-gray-900 dark:hover:text-white transition-colors focus-ring rounded p-2"
-              >
-                <FaLinkedin className="w-5 h-5" />
-              </a>
-            </div>
+            <SocialLinks variant="footer" />
           </div>
         </div>
       </footer>
