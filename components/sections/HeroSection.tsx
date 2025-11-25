@@ -1,12 +1,12 @@
 'use client';
 
 /**
- * Hero Section
+ * Sección Hero
  * 
- * Full-viewport hero with:
- * - Large headline and subtext on the left
- * - Canvas image sequence on the right (controlled by scroll)
- * - Sticky behavior with ScrollTrigger
+ * Hero de viewport completo con:
+ * - Título grande y subtítulo a la izquierda
+ * - Secuencia de imágenes en canvas a la derecha (controlada por scroll)
+ * - Comportamiento sticky con ScrollTrigger
  */
 
 import { useEffect, useRef } from 'react';
@@ -14,13 +14,31 @@ import { useEffect, useRef } from 'react';
 import CanvasSequence from '@/components/CanvasSequence';
 import { gsap } from '@/lib/gsap';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
+import { useGoogleCalendar } from '@/hooks/useGoogleCalendar';
 import Countdown from '../Countdown';
+import SocialLinks from '../SocialLinks';
+import { FaCalendarAlt } from 'react-icons/fa';
 
 
 export default function HeroSection() {
   const scrollTo = useSmoothScroll();
   const sectionRef = useRef<HTMLElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
+
+  // Configuración del evento
+  const eventDate = new Date('2026-02-01T00:00:00');
+  const eventEndDate = new Date('2026-02-01T23:59:59'); // Mismo día, fin del día
+  const eventTitle = 'Próxima Misión - ITBA Rocketry Team';
+  const eventDescription = ''; // Agregar descripción
+  const eventLocation = ''; // Agregar ubicación
+
+  const calendarLink = useGoogleCalendar({
+    title: eventTitle,
+    startDate: eventDate,
+    endDate: eventEndDate,
+    description: eventDescription,
+    location: eventLocation,
+  });
 
   useEffect(() => {
     if (!sectionRef.current || !backgroundRef.current) return;
@@ -53,8 +71,11 @@ export default function HeroSection() {
     >
       <div
         ref={backgroundRef}
-        className="pointer-events-none absolute inset-0 -z-10 bg-cover bg-center will-change-transform"
-        style={{ backgroundImage: 'url(/sequence/Launch.webp)' }}
+        className="pointer-events-none absolute inset-0 -z-10 bg-cover will-change-transform"
+        style={{ 
+          backgroundImage: 'url(/sequence/Launch.webp)',
+          backgroundPosition: 'center 15%',
+        }}
         aria-hidden
       />
       <div
@@ -62,11 +83,11 @@ export default function HeroSection() {
         aria-hidden
       />
 
-      {/* Content wrapper - will be pinned by CanvasSequence ScrollTrigger */}
-      <div className="relative h-screen flex items-center">
+      {/* Contenedor de contenido - será fijado por CanvasSequence ScrollTrigger */}
+      <div className="relative min-h-screen flex items-center py-20 md:py-0 md:h-screen">
         <div className="container-custom w-full">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left: Headline & Copy */}
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+            {/* Izquierda: Título y texto */}
             <div className="space-y-6 lg:space-y-8 pt-20 lg:pt-0 text-[#f5f5f7]">
               <h1
                 className="text-fluid-5xl lg:text-fluid-7xl font-bold leading-[1.1] tracking-tight text-[#f5f5f7]"
@@ -94,8 +115,8 @@ export default function HeroSection() {
                 </a>
               </div>
             </div>
-            {/* Right: Countdown positioned at bottom */}
-            <div className="flex items-end justify-end pt-20 lg:pt-0">
+            {/* Derecha: Countdown posicionado en la parte inferior */}
+            <div className="flex flex-col items-center justify-center lg:items-end lg:justify-end pt-8 md:pt-12 lg:pt-0">
               <div className="w-full max-w-md">
                 <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
                   <div className="text-center mb-4">
@@ -106,18 +127,23 @@ export default function HeroSection() {
                       1 de Febrero, 2026
                     </p>
                   </div>
-                  <Countdown targetDate={new Date('2026-02-01T00:00:00')} />
+                  <Countdown targetDate={eventDate} />
+                  <div className="mt-6 pt-6 border-t border-white/20">
+                    <a
+                      href={calendarLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl px-4 py-3 text-sm md:text-base font-medium text-white transition-all duration-200 border border-white/30 hover:border-white/40 shadow-lg hover:shadow-xl"
+                    >
+                      <FaCalendarAlt className="w-5 h-5" />
+                      Agregar a mi calendario
+                    </a>
+                  </div>
                 </div>
               </div>
+              {/* Iconos de Redes Sociales */}
+              <SocialLinks variant="hero" className="mt-6 lg:mt-8" />
             </div>
-            {/* Right: Canvas Sequence */}
-            {/* <div className="relative aspect-[4/3] lg:aspect-square rounded-2xl overflow-hidden shadow-2xl">
-              <CanvasSequence
-                frameCount={30}
-                pathTemplate="/sequence/Launch.webp"
-                className="w-full h-full"
-              />
-            </div> */}
           </div>
         </div>
       </div>

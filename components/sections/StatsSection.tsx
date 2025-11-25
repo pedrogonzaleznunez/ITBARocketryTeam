@@ -1,10 +1,10 @@
 'use client';
 
 /**
- * Stats Section
+ * Sección de Estadísticas
  * 
- * Displays key statistics with animated numbers.
- * Appears before SpecsSection to showcase achievements.
+ * Muestra estadísticas clave con números animados.
+ * Aparece antes de SpecsSection para mostrar logros.
  */
 
 import Section from '@/components/Section';
@@ -29,9 +29,9 @@ export default function StatsSection() {
           </p>
         </Reveal>
 
-        {/* Stats */}
+        {/* Estadísticas */}
         <Reveal delay={0.2}>
-          <div className="grid grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
             <div>
               <AnimatedNumber 
                 value="50+" 

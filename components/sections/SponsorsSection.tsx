@@ -1,10 +1,10 @@
 'use client';
 
 /**
- * Sponsors Section
+ * Sección de Auspiciantes
  * 
- * Displays sponsor logos with random popping animation.
- * Logos appear one by one in random order when section enters viewport.
+ * Muestra logos de auspiciantes con animación aleatoria de aparición.
+ * Los logos aparecen uno por uno en orden aleatorio cuando la sección entra al viewport.
  */
 
 import { useRef, useEffect } from 'react';
@@ -20,9 +20,9 @@ interface Sponsor {
 }
 
 // Tamaño de los logos (tamaño máximo en píxeles)
-const LOGO_SIZE = 300;
+const LOGO_SIZE = 500;
 
-// Array de sponsors
+// Array de auspiciantes
 const sponsors: Sponsor[] = [
   { 
     name: 'Blue Origin', 
@@ -67,46 +67,6 @@ const sponsors: Sponsor[] = [
 ];
 
 
-/**
- * Calcula el número óptimo de columnas para el grid basado en la cantidad de items.
- * Asegura una distribución equilibrada en el patrón de ajedrez.
- */
-function calculateOptimalCols(itemCount: number): number {
-  if (itemCount <= 4) return 4;
-  if (itemCount <= 6) return 4;
-  if (itemCount <= 10) return 5;
-  if (itemCount <= 12) return 6;
-  if (itemCount <= 16) return 6;
-  return 8;
-}
-
-/**
- * Calcula el número total de casilleros necesarios para el patrón de ajedrez.
- * En un patrón de ajedrez, aproximadamente la mitad de los casilleros son "blancos".
- */
-function calculateTotalSquares(cols: number, itemCount: number): number {
-  return cols * Math.ceil((itemCount * 2) / cols);
-}
-
-/**
- * Determina si un casillero en el grid es un casillero "blanco" (donde van los logos).
- */
-function isWhiteSquare(row: number, col: number): boolean {
-  return (row + col) % 2 === 0;
-}
-
-/**
- * Cuenta cuántos casilleros blancos hay antes de un índice dado en el grid.
- */
-function countWhiteSquaresBefore(gridIndex: number, cols: number): number {
-  let count = 0;
-  for (let i = 0; i < gridIndex; i++) {
-    const row = Math.floor(i / cols);
-    const col = i % cols;
-    if (isWhiteSquare(row, col)) count++;
-  }
-  return count;
-}
 
 export default function SponsorsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -123,7 +83,7 @@ export default function SponsorsSection() {
     randomOrder: true,
   });
 
-  // Iniciar animación cuando la sección se vuelve visible
+  // Iniciar animación cuando la sección se vuelve visible en el viewport
   useEffect(() => {
     if (isVisible) {
       start();
@@ -133,9 +93,6 @@ export default function SponsorsSection() {
   if (sponsors.length === 0) {
     return null;
   }
-
-  const cols = calculateOptimalCols(sponsors.length);
-  const totalSquares = calculateTotalSquares(cols, sponsors.length);
 
   return (
     <Section id="sponsors" className="bg-[#ffffff] text-[#111727]">
@@ -147,44 +104,23 @@ export default function SponsorsSection() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <p className="text-fluid-lg text-gray-300 mb-12 lg:mb-16 text-center max-w-2xl mx-auto">
+          <p className="text-fluid-lg text-gray-400 mb-12 lg:mb-16 text-center max-w-2xl mx-auto">
             Empresas e instituciones que apoyan nuestro proyecto y hacen posible la innovación.
           </p>
         </Reveal>
 
-        {/* Sponsors Grid - Chessboard pattern */}
-        <div 
-          className="grid gap-x-4 lg:gap-x-6 gap-y-0 justify-center"
-          style={{ 
-            gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
-            maxWidth: '100%',
-            rowGap: '0px'
-          }}
-        >
-          {Array.from({ length: totalSquares }).map((_, gridIndex) => {
-            const row = Math.floor(gridIndex / cols);
-            const col = gridIndex % cols;
-            
-            if (!isWhiteSquare(row, col)) {
-              return <div key={gridIndex} className="aspect-square" />;
-            }
-            
-            const whiteSquareCount = countWhiteSquaresBefore(gridIndex, cols);
-            
-            if (whiteSquareCount >= sponsors.length) {
-              return <div key={gridIndex} className="aspect-square" />;
-            }
-            
-            const sponsorIndex = whiteSquareCount;
-            const sponsor = sponsors[sponsorIndex];
-            const isLogoVisible = visibleItems.has(sponsorIndex);
+        {/* Grid de Auspiciantes - Grid responsive */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-8">
+          {sponsors.map((sponsor, index) => {
+            const isLogoVisible = visibleItems.has(index);
 
             return (
               <div
-                key={gridIndex}
+                key={index}
                 className={`
                   flex items-center justify-center
                   aspect-square
+                  p-4 lg:p-6
                   transition-all duration-1000 ease-out
                   ${isLogoVisible 
                     ? 'opacity-100 scale-100 translate-y-0' 
@@ -192,16 +128,16 @@ export default function SponsorsSection() {
                   }
                 `}
               >
-                <div className="w-full h-full flex items-center justify-center p-4 relative">
+                <div className="w-full h-full flex items-center justify-center relative">
                   <Image
                     src={sponsor.logo}
                     alt={`${sponsor.name} logo`}
                     width={LOGO_SIZE}
                     height={LOGO_SIZE}
-                    className="object-contain"
+                    className="object-contain w-full h-full"
                     style={{ 
-                      maxWidth: `${LOGO_SIZE}px`, 
-                      maxHeight: `${LOGO_SIZE}px`,
+                      maxWidth: '100%',
+                      maxHeight: '100%',
                       width: 'auto',
                       height: 'auto'
                     }}

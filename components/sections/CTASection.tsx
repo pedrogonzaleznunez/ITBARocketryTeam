@@ -1,10 +1,10 @@
 'use client';
 
 /**
- * CTA Section
+ * Sección CTA
  * 
- * Final call-to-action with primary and secondary buttons.
- * Microinteractions on hover.
+ * Call-to-action final con botones primario y secundario.
+ * Microinteracciones en hover.
  */
 
 import Section from '@/components/Section';
@@ -21,17 +21,11 @@ export default function CTASection() {
           <h2 className="text-fluid-4xl lg:text-fluid-6xl font-bold tracking-tight mb-6 lg:mb-8">
             ¿Listo para despegar?
           </h2>
-        </Reveal>
-
-        <Reveal delay={0.1}>
           <p className="text-fluid-lg lg:text-fluid-2xl text-gray-300 mb-8 lg:mb-12 leading-relaxed">
             Únete a nuestro equipo o sigue nuestros próximos lanzamientos.
             <br />
             La próxima misión está por comenzar.
           </p>
-        </Reveal>
-
-        <Reveal delay={0.2}>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a
               href="mailto:info@itbarocketry.com"
