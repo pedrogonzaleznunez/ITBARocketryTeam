@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, CSSProperties } from 'react';
+import { useState, useEffect, useRef, useMemo, CSSProperties } from 'react';
 
 /**
  * Componente Divider con Estrellas y Estrellas Fugaces
@@ -19,23 +19,21 @@ const SHOOTING_STAR_MAX_DURATION = 2500; // 2.5 segundos
 const SHOOTING_STAR_LENGTH = 80; // Longitud de la cola en píxeles
 const SHOOTING_STAR_COLOR = '#5EC8E8'; // Celeste suave
 
+/**
+ * Función pseudoaleatoria determinística basada en seed
+ */
 const pseudoRand = (seed: number) => {
   const x = Math.sin(seed + 1) * 10000;
   return x - Math.floor(x);
 };
 
-const stars = Array.from({ length: starCount }, (_, i) => {
-  const cx = 40 + pseudoRand(i * 137) * (1440 - 80);
-  const cy = 20 + pseudoRand(i * 521) * (120 - 40);
-  const r = 0.8 + pseudoRand(i * 353) * 2.2;
-  const opacity = 0.4 + pseudoRand(i * 727) * 0.5;
-  const delay = pseudoRand(i * 911) * 4;
-  const duration = 4 + pseudoRand(i * 613) * 4;
-  const driftX = (pseudoRand(i * 419) - 0.5) * 20;
-  const driftY = (pseudoRand(i * 281) - 0.5) * 10;
-
-  return { cx, cy, r, opacity, delay, duration, driftX, driftY };
-});
+/**
+ * Redondea un número a un número fijo de decimales para asegurar consistencia
+ * entre servidor y cliente
+ */
+const roundToFixed = (value: number, decimals: number = 6): number => {
+  return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
+};
 
 /**
  * Interfaz para una estrella fugaz
@@ -110,6 +108,25 @@ const StarsDivider = () => {
   const [shootingStars, setShootingStars] = useState<ShootingStar[]>([]);
   const idCounterRef = useRef(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  /**
+   * Genera las estrellas estáticas de forma determinística
+   * Se genera una vez y se mantiene consistente entre servidor y cliente
+   */
+  const stars = useMemo(() => {
+    return Array.from({ length: starCount }, (_, i) => {
+      const cx = roundToFixed(40 + pseudoRand(i * 137) * (1440 - 80));
+      const cy = roundToFixed(20 + pseudoRand(i * 521) * (120 - 40));
+      const r = roundToFixed(0.8 + pseudoRand(i * 353) * 2.2);
+      const opacity = roundToFixed(0.4 + pseudoRand(i * 727) * 0.5);
+      const delay = roundToFixed(pseudoRand(i * 911) * 4);
+      const duration = roundToFixed(4 + pseudoRand(i * 613) * 4);
+      const driftX = roundToFixed((pseudoRand(i * 419) - 0.5) * 20);
+      const driftY = roundToFixed((pseudoRand(i * 281) - 0.5) * 10);
+
+      return { cx, cy, r, opacity, delay, duration, driftX, driftY };
+    });
+  }, []);
 
   useEffect(() => {
     /**
@@ -262,8 +279,8 @@ const StarsDivider = () => {
               '--drift-x': `${star.driftX}px`,
               '--drift-y': `${star.driftY}px`,
               '--twinkle-start': star.opacity,
-              '--twinkle-mid': Math.min(1, star.opacity + 0.25),
-              '--twinkle-end': star.opacity * 0.9,
+              '--twinkle-mid': roundToFixed(Math.min(1, star.opacity + 0.25)),
+              '--twinkle-end': roundToFixed(star.opacity * 0.9),
             } as CSSProperties
           }
         />
