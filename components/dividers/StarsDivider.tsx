@@ -104,7 +104,12 @@ const generateShootingStar = (id: number, timestamp: number): ShootingStar => {
   };
 };
 
-const StarsDivider = () => {
+interface StarsDividerProps {
+  /** ID opcional para el elemento raíz del divider */
+  id?: string;
+}
+
+const StarsDivider = ({ id }: StarsDividerProps = {}) => {
   const [shootingStars, setShootingStars] = useState<ShootingStar[]>([]);
   const idCounterRef = useRef(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -169,7 +174,7 @@ const StarsDivider = () => {
   }, []);
 
   return (
-    <svg width="100%" height="120" viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg">
+    <svg id={id} width="100%" height="120" viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <filter id="starGlow" x="-150%" y="-150%" width="400%" height="400%">
           <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="blurred" />

@@ -62,7 +62,7 @@ export default function SocialLinks({ variant = 'footer', className = '' }: Soci
           target={href.startsWith('mailto:') ? undefined : '_blank'}
           rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
           aria-label={label}
-          className="hover:text-gray-900 dark:hover:text-white transition-colors focus-ring rounded p-2"
+          className="hover:text-white transition-colors focus-ring rounded p-2"
         >
           <Icon className="w-5 h-5" />
         </a>

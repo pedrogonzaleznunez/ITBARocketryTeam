@@ -1,20 +1,20 @@
 'use client';
 
 /**
- * CanvasSequence Component
+ * Componente CanvasSequence
  * 
- * Renders an image sequence on a canvas, controlled by scroll position.
- * Uses GSAP ScrollTrigger to create a "flipbook" effect.
+ * Renderiza una secuencia de imágenes en un canvas, controlada por la posición del scroll.
+ * Usa GSAP ScrollTrigger para crear un efecto de "flipbook".
  * 
- * Features:
- * - Preloads all frames with progress tracking
- * - High-DPI (Retina) display support
- * - Responsive canvas sizing
- * - Fallback gradient if images are missing
- * - Proper cleanup of ScrollTrigger instances
+ * Características:
+ * - Precarga todos los frames con seguimiento de progreso
+ * - Soporte para pantallas de alta densidad (Retina)
+ * - Tamaño de canvas responsivo
+ * - Gradiente de respaldo si faltan imágenes
+ * - Limpieza apropiada de instancias de ScrollTrigger
  * 
- * Usage:
- * Place numbered frames in /public/sequence/:
+ * Uso:
+ * Colocar frames numerados en /public/sequence/:
  * - frame_0001.jpg, frame_0002.jpg, ..., frame_00NN.jpg
  */
 
@@ -233,15 +233,15 @@ export default function CanvasSequence({
       />
       
       {!isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-800">
           <div className="text-center">
-            <div className="w-32 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+            <div className="w-32 h-1 bg-gray-700 rounded-full overflow-hidden">
               <div
                 className="h-full bg-primary-500 transition-all duration-300"
                 style={{ width: `${loadProgress}%` }}
               />
             </div>
-            <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-4 text-sm text-gray-400">
               Cargando {loadProgress}%
             </p>
           </div>
