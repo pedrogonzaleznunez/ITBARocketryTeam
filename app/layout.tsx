@@ -68,6 +68,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" dir="ltr" className={inter.variable}>
+      {/* TODO: adaptar a modo claro en un futuro */}
       <body className={inter.className}>
         {children}
       </body>

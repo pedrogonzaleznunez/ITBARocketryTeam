@@ -10,20 +10,22 @@
  */
 
 import { useEffect, useRef } from 'react';
+import { FaCalendarAlt } from 'react-icons/fa';
 
 import CanvasSequence from '@/components/CanvasSequence';
 import { gsap } from '@/lib/gsap';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { useGoogleCalendar } from '@/hooks/useGoogleCalendar';
+
 import Countdown from '../Countdown';
 import SocialLinks from '../SocialLinks';
-import { FaCalendarAlt } from 'react-icons/fa';
 
 
 export default function HeroSection() {
   const scrollTo = useSmoothScroll();
   const sectionRef = useRef<HTMLElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
+  const isScrollingRef = useRef(false);
 
   // Configuración del evento
   const eventDate = new Date('2026-02-01T00:00:00');
@@ -62,6 +64,41 @@ export default function HeroSection() {
 
     return () => ctx.revert();
   }, []);
+
+  /**
+   * Función para hacer scroll suave y lento al primer StarsDivider
+   * Usa GSAP para controlar la velocidad del scroll con animación personalizada
+   */
+  const scrollToFirstDivider = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    (e.currentTarget as HTMLElement).blur();
+
+    // Protección contra clics múltiples
+    if (isScrollingRef.current) return;
+
+    const target = document.getElementById('first-stars-divider');
+    if (!target) return;
+
+    isScrollingRef.current = true;
+    const startPosition = window.scrollY;
+    const targetPosition = target.getBoundingClientRect().top + startPosition;
+
+    // Crear un objeto proxy para animar el scroll con GSAP
+    const scrollObj = { y: startPosition };
+    
+    gsap.to(scrollObj, {
+      y: targetPosition,
+      duration: 1, // Scroll más lento
+      ease: 'power2.out',
+      onUpdate: () => {
+        window.scrollTo(0, scrollObj.y);
+      },
+      onComplete: () => {
+        isScrollingRef.current = false;
+      },
+    });
+  };
 
   return (
     <section
@@ -107,12 +144,12 @@ export default function HeroSection() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <a href="#cta" onClick={(e) => scrollTo(e, 'cta')} className="btn-primary">
+                <a href="#first-stars-divider" onClick={scrollToFirstDivider} className="btn-primary">
                   Ver nuestro trabajo
                 </a>
-                <a href="#highlights" onClick={(e) => scrollTo(e, 'highlights')} className="btn-ghost">
+                {/* <a href="#highlights" onClick={(e) => scrollTo(e, 'highlights')} className="btn-ghost">
                   Conocer más
-                </a>
+                </a> */}
               </div>
             </div>
             {/* Derecha: Countdown posicionado en la parte inferior */}

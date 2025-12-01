@@ -42,7 +42,7 @@ export default function Home() {
       
       <main>
         <HeroSection />
-        <StarsDivider />
+        <StarsDivider id="first-stars-divider" />
         <TeamSection />
         <StarsDivider />
         <SponsorsSection />
@@ -54,12 +54,13 @@ export default function Home() {
         <SpecsSection />
         <StarsDivider />
         <GallerySection />
+        <StarsDivider />
         <CTASection />
       </main>
 
-      <footer className="py-8 border-t border-gray-200 dark:border-gray-800">
+      <footer className="py-8 border-t border-gray-800">
         <div className="container-custom">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
             <p>&copy; 2025 ITBA Rocketry Team. Todos los derechos reservados.</p>
             <SocialLinks variant="footer" />
           </div>

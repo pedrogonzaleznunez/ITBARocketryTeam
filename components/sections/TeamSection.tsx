@@ -71,7 +71,7 @@ export default function TeamSection() {
   const lightbox = useImageLightbox();
 
   return (
-    <Section id="team" className="bg-gray-50 dark:bg-gray-900/40">
+    <Section id="team" className="bg-gray-900/40">
       {/* Encabezado de la sección */}
       <div className="text-center mb-16 lg:mb-20">
         <Reveal delay={0.1}>
@@ -80,7 +80,7 @@ export default function TeamSection() {
           </h2>
         </Reveal>
         <Reveal delay={0.2}>
-          <p className="text-fluid-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+          <p className="text-fluid-lg text-gray-400 max-w-3xl mx-auto">
             Somos estudiantes del ITBA apasionados por la ingeniería aeroespacial.
             Cada lanzamiento es el resultado de equipos coordinados de propulsión,
             aviónica, estructuras, simulación y operaciones.
@@ -181,7 +181,7 @@ function PhotoCard({ photo, priority, lightbox }: PhotoCardProps) {
   return (
     <Reveal>
       <div
-        className={`relative ${photo.heightClass} rounded-3xl overflow-hidden shadow-2xl border-2 border-white/50 dark:border-white/10 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:border-primary-500`}
+        className={`relative ${photo.heightClass} rounded-3xl overflow-hidden shadow-2xl border-2 border-white/10 cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:border-primary-500`}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         role="button"
@@ -227,23 +227,23 @@ type TextCardProps = {
 function TextCard({ highlight }: TextCardProps) {
   return (
     <Reveal delay={0.05}>
-      <div className="bg-white/80 dark:bg-gray-900/60 backdrop-blur-md rounded-3xl p-8 lg:p-10 shadow-subtle border border-gray-200/50 dark:border-gray-800/60 text-left h-full flex flex-col justify-between">
+      <div className="bg-gray-900/60 backdrop-blur-md rounded-3xl p-8 lg:p-10 shadow-subtle border border-gray-800/60 text-left h-full flex flex-col justify-between">
         <div className="space-y-4">
           <h3 className="text-fluid-2xl font-bold">{highlight.title}</h3>
-          <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+          <p className="text-gray-400 leading-relaxed">
             {highlight.description}
           </p>
         </div>
 
         {/* Estadísticas del equipo */}
         {highlight.showStats && (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-gray-200/60 dark:border-gray-800/60 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-gray-800/60 mt-8">
             {teamStats.map((stat) => (
               <div key={stat.label}>
-                <p className="text-3xl font-bold text-gray-900 dark:text-white">
+                <p className="text-3xl font-bold text-white">
                   {stat.value}
                 </p>
-                <p className="text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400">
+                <p className="text-sm uppercase tracking-wide text-gray-400">
                   {stat.label}
                 </p>
               </div>
@@ -253,9 +253,9 @@ function TextCard({ highlight }: TextCardProps) {
 
         {/* Lista de viñetas */}
         {highlight.bullets && (
-          <ul className="space-y-2 pt-8 border-t border-gray-200/60 dark:border-gray-800/60 mt-8">
+          <ul className="space-y-2 pt-8 border-t border-gray-800/60 mt-8">
             {highlight.bullets.map((bullet) => (
-              <li key={bullet} className="flex items-start gap-3 text-gray-600 dark:text-gray-400">
+              <li key={bullet} className="flex items-start gap-3 text-gray-400">
                 <span className="text-primary-500 mt-1">•</span>
                 <span>{bullet}</span>
               </li>

@@ -4,9 +4,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#111827' },
-  ],
+  // TODO: adaptar a modo claro en un futuro
+  themeColor: '#111827', // Forzando color oscuro siempre
 }
 
