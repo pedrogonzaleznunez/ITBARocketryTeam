@@ -16,7 +16,7 @@ import { gsap } from '@/lib/gsap';
 const highlights = [
   {
     title: 'Propulsión Avanzada',
-    description: 'Motores híbridos de última generación con control preciso de empuje y combustión optimizada.',
+    description: 'Motores Híbridos de desarrollo propio validados a través de ensayos de banco y simulación.',
     icon: '🚀',
   },
   {
