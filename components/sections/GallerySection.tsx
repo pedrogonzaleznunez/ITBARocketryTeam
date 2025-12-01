@@ -24,7 +24,7 @@ export default function GallerySection() {
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="text-fluid-lg text-gray-600 dark:text-gray-400 text-center max-w-2xl mx-auto">
+            <p className="text-fluid-lg text-gray-400 text-center max-w-2xl mx-auto">
               Momentos clave de nuestros proyectos y lanzamientos.
             </p>
           </Reveal>

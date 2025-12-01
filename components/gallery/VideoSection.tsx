@@ -186,7 +186,7 @@ export default function VideoSection() {
               will-change-[border-radius,box-shadow,width,background-color]
               ${isExpanded 
                 ? 'rounded-none shadow-none w-full max-w-full bg-transparent' 
-                : 'w-full bg-gray-200 dark:bg-gray-800'
+                : 'w-full bg-gray-800'
               }
             `}
           >
