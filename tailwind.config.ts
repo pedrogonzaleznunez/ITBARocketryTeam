@@ -6,6 +6,8 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  // darkMode no es necesario ya que no usamos clases dark: condicionales
+  // TODO: Si en el futuro se implementa modo claro, configurar darkMode: 'class'
   theme: {
     extend: {
       colors: {
