@@ -74,8 +74,8 @@ export default function Nav() {
               href="#cta"
               onClick={(e) => scrollTo(e, 'cta')}
               className={clsx(
+                "hidden min-[1000px]:flex items-center justify-center",
                 "btn-primary transition-all duration-700 ease-in-out",
-                "flex items-center justify-center",
                 "px-2.5 py-2 md:px-4 md:py-2.5",
                 "text-xs md:text-base",
                 "whitespace-nowrap"

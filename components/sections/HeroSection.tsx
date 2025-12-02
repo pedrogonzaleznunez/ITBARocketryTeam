@@ -148,6 +148,13 @@ export default function HeroSection() {
                 <a href="#first-stars-divider" onClick={scrollToFirstDivider} className="btn-primary">
                   {t('hero.cta_work')}
                 </a>
+                <a
+                  href="#cta"
+                  onClick={(e) => scrollTo(e, 'cta')}
+                  className="btn-ghost min-[1000px]:hidden bg-white/20 border border-white/40 backdrop-blur-md hover:bg-white/30"
+                >
+                  {t('nav.cta')}
+                </a>
                 {/* <a href="#highlights" onClick={(e) => scrollTo(e, 'highlights')} className="btn-ghost">
                   Conocer más
                 </a> */}
@@ -163,6 +170,9 @@ export default function HeroSection() {
                     </p>
                     <p className="text-lg md:text-xl font-semibold text-white">
                       {t('hero.date')}
+                    </p>
+                    <p className="text-sm text-white/70 mt-1">
+                      {t('hero.location')}
                     </p>
                   </div>
                   <Countdown targetDate={eventDate} />
