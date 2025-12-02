@@ -31,8 +31,8 @@ export default function HeroSection() {
   const eventDate = new Date('2026-06-15T00:00:00'); 
   const eventEndDate = new Date('2026-06-15T23:59:59'); // Mismo día, fin del día
   const eventTitle = 'Próxima Misión - ITBA Rocketry Team';
-  const eventDescription = ''; // Agregar descripción
-  const eventLocation = ''; // Agregar ubicación
+const eventDescription = 'Lanzamiento oficial del cohete del ITBA Rocketry Team en la Intercollegiate Rocket Engineering Competition (IREC) 2026. Actividades del día: preparación en el sitio de lanzamiento, revisiones finales, integración de carga útil, y vuelo en la ventana asignada.';
+  const eventLocation = 'Spaceport America, Truth or Consequences, New Mexico, USA';
 
   const calendarLink = useGoogleCalendar({
     title: eventTitle,
