@@ -89,11 +89,11 @@ export default function Nav() {
             <button
               onClick={toggleLanguage}
               className={clsx(
-                "btn-ghost transition-all duration-300 ease-in-out",
+                "btn-primary transition-all duration-700 ease-in-out",
                 "flex items-center justify-center",
-                "px-2 py-1 md:px-3 md:py-1.5",
-                "text-xs md:text-sm font-medium",
-                "border border-white/10 hover:bg-white/10 rounded-lg"
+                "px-2.5 py-2 md:px-4 md:py-2.5",
+                "text-xs md:text-base",
+                "whitespace-nowrap"
               )}
               aria-label="Toggle language"
             >
