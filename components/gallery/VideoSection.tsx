@@ -10,16 +10,18 @@
 import { useRef, useEffect } from 'react';
 import Reveal from '@/components/Reveal';
 import { useVideoExpand } from '@/hooks/useVideoExpand';
+import { useLanguage } from '@/components/LanguageContext';
 
 export default function VideoSection() {
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const mainVideoRef = useRef<HTMLVideoElement>(null);
   const backgroundVideoRef = useRef<HTMLVideoElement>(null);
-  
+  const { t } = useLanguage();
+
   // Ajustar threshold para móviles (más bajo para que sea más fácil activar)
   const isMobile = typeof window !== 'undefined' && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   const threshold = isMobile ? 0.3 : 0.5;
-  
+
   const isExpanded = useVideoExpand({
     videoRef: videoContainerRef,
     idleDelay: 1200, // 1.2 segundos de inactividad para activar
@@ -107,12 +109,12 @@ export default function VideoSection() {
   }, [isExpanded]);
 
   return (
-    <section 
+    <section
       className="relative"
-      aria-label="Video de lanzamiento"
+      aria-label={t('gallery.video_label')}
     >
       {/* Video de fondo con blur - solo visible cuando está expandido */}
-      <div 
+      <div
         className={`
           fixed inset-0 z-[44] overflow-hidden
           transition-opacity duration-[1200ms] ease-[cubic-bezier(0.4,0,0.2,1)]
@@ -137,7 +139,7 @@ export default function VideoSection() {
           playsInline
           controls={false}
           poster="/sequence/Launch.webp"
-          style={{ 
+          style={{
             filter: 'blur(30px) brightness(0.6)',
             transform: 'scale(1.15)',
             position: 'absolute',
@@ -154,7 +156,7 @@ export default function VideoSection() {
           <source src="/videos/despegue.mp4" type="video/mp4" />
         </video>
         {/* Overlay oscuro adicional para mejor contraste */}
-        <div 
+        <div
           className="absolute inset-0 bg-black/40"
           style={{
             top: 0,
@@ -166,26 +168,26 @@ export default function VideoSection() {
           }}
         />
       </div>
-      
-      <div 
+
+      <div
         ref={videoContainerRef}
         className={`
           transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0,0.2,1)]
           will-change-transform
-          ${isExpanded 
-            ? 'fixed left-0 right-0 top-1/2 -translate-y-1/2 z-50 w-screen flex items-center justify-center' 
+          ${isExpanded
+            ? 'fixed left-0 right-0 top-1/2 -translate-y-1/2 z-50 w-screen flex items-center justify-center'
             : 'relative z-10 w-full'
           }
         `}
       >
         <Reveal>
-          <div 
+          <div
             className={`
               relative group overflow-hidden
               transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0,0.2,1)]
               will-change-[border-radius,box-shadow,width,background-color]
-              ${isExpanded 
-                ? 'rounded-none shadow-none w-full max-w-full bg-transparent' 
+              ${isExpanded
+                ? 'rounded-none shadow-none w-full max-w-full bg-transparent'
                 : 'w-full bg-gray-800'
               }
             `}
@@ -196,8 +198,8 @@ export default function VideoSection() {
                 className={`
                   w-full h-full transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0,0.2,1)]
                   will-change-[object-fit,height,max-height]
-                  ${isExpanded 
-                    ? 'object-contain h-auto max-h-[90vh] mx-auto relative z-10' 
+                  ${isExpanded
+                    ? 'object-contain h-auto max-h-[90vh] mx-auto relative z-10'
                     : 'object-cover'
                   }
                 `}
@@ -210,9 +212,9 @@ export default function VideoSection() {
               >
                 <source src="/videos/despegue.webm" type="video/webm" />
                 <source src="/videos/despegue.mp4" type="video/mp4" />
-                Tu navegador no soporta video HTML5.
+                {t('gallery.video_unsupported')}
               </video>
-              
+
               {/* Overlay al hacer hover - igual que las fotos, desactivado cuando está expandido */}
               {!isExpanded && (
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500" />

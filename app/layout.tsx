@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { LanguageProvider } from '@/components/LanguageContext';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -15,13 +16,13 @@ export const metadata: Metadata = {
   authors: [{ name: 'ITBA Rocketry Team' }],
   creator: 'ITBA Rocketry Team',
   metadataBase: new URL('https://itbarocketry.com'),
-  
+
   icons: {
     icon: '/sequence/ITBA_Rocketry_Team-Redondo.webp',
     apple: '/sequence/ITBA_Rocketry_Team-Redondo.webp',
     shortcut: '/sequence/ITBA_Rocketry_Team-Redondo.webp',
   },
-  
+
   openGraph: {
     type: 'website',
     locale: 'es_AR',
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  
+
   twitter: {
     card: 'summary_large_image',
     title: 'ITBA Rocketry Team | Innovación en Propulsión Espacial',
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     images: ['/og-image.jpg'],
     creator: '@itbarocketry',
   },
-  
+
   robots: {
     index: true,
     follow: true,
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  
+
 }
 
 export default function RootLayout({
@@ -70,7 +71,9 @@ export default function RootLayout({
     <html lang="es" dir="ltr" className={inter.variable}>
       {/* TODO: adaptar a modo claro en un futuro */}
       <body className={inter.className}>
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   )

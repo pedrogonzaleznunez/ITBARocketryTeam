@@ -46,9 +46,9 @@ export default function Home() {
         <TeamSection />
         <StarsDivider />
         <SponsorsSection />
-        <RockerDivider /> 
-        <HighlightsSection />
         <StarsDivider />
+        <HighlightsSection />
+        <RockerDivider /> 
         <StatsSection />
         <StarsDivider />
         <SpecsSection />

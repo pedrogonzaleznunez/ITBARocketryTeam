@@ -6,6 +6,14 @@
  * Sección que muestra información sobre el equipo ITBA Rocketry.
  * Incluye fotos del equipo que pueden ampliarse en un lightbox al hacer click.
  * 
+'use client';
+
+/**
+ * Team Section
+ *
+ * Sección que muestra información sobre el equipo ITBA Rocketry.
+ * Incluye fotos del equipo que pueden ampliarse en un lightbox al hacer click.
+ *
  * Estructura:
  * - Encabezado centrado con título y descripción
  * - Grid de fotos y tarjetas de texto alternados
@@ -17,51 +25,7 @@ import Section from '@/components/Section';
 import Reveal from '@/components/Reveal';
 import { useImageLightbox, type ImageLightboxData } from '@/hooks/useImageLightbox';
 import ImageLightbox from '@/components/gallery/ImageLightbox';
-
-// Datos de estadísticas del equipo
-const teamStats = [
-  { value: '30+', label: 'Integrantes activos' },
-  { value: '6', label: 'Sub-equipos especializados' },
-  { value: '1000+', label: 'Horas de ensayo al año' },
-];
-
-// Contenido destacado del equipo
-const teamHighlights = [
-  {
-    title: 'Ingeniería colaborativa',
-    description:
-      'Integramos investigación, diseño y pruebas en ciclos rápidos para llevar los cohetes estudiantiles de Latinoamérica a un nuevo nivel.',
-    showStats: true,
-  },
-  {
-    title: 'Competencias internacionales',
-    description:
-      'Participamos en la Spaceport America Cup representando a Argentina con resultados destacados gracias a nuestro compromiso colectivo.',
-    bullets: [
-      'Primera delegación latinoamericana en la categoría híbrida',
-      'Diseño propio de aviónica y propulsión',
-      'Mentoría activa para nuevos integrantes',
-    ],
-  },
-];
-
-// Fotos del equipo que pueden ampliarse
-const teamPhotos = [
-  {
-    src: '/sequence/Team_SDT.webp',
-    alt: 'Equipo ITBA Rocketry en el campus',
-    title: 'ITBA Rocketry Team',
-    subtitle: 'Campus ITBA · SDT',
-    heightClass: 'h-[360px] lg:h-[440px]',
-  },
-  {
-    src: '/team_2.jpg',
-    alt: 'Equipo celebrando en Spaceport America Cup',
-    title: 'Spaceport America Cup 2025',
-    subtitle: 'Premiación internacional',
-    heightClass: 'h-[300px] lg:h-[360px]',
-  },
-];
+import { useLanguage } from '@/components/LanguageContext';
 
 /**
  * Componente principal de la sección del equipo
@@ -69,6 +33,50 @@ const teamPhotos = [
 export default function TeamSection() {
   // Hook para manejar el estado del lightbox
   const lightbox = useImageLightbox();
+  const { t } = useLanguage();
+
+  // Datos de estadísticas del equipo
+  const teamStats = [
+    { value: '30+', label: t('team.stats.active_members') },
+    { value: '6', label: t('team.stats.subteams') },
+    { value: '1000+', label: t('team.stats.test_hours') },
+  ];
+
+  // Contenido destacado del equipo
+  const teamHighlights = [
+    {
+      title: t('team.highlights.engineering_title'),
+      description: t('team.highlights.engineering_desc'),
+      showStats: true,
+    },
+    {
+      title: t('team.highlights.competition_title'),
+      description: t('team.highlights.competition_desc'),
+      bullets: [
+        t('team.highlights.bullets.0'),
+        t('team.highlights.bullets.1'),
+        t('team.highlights.bullets.2'),
+      ],
+    },
+  ];
+
+  // Fotos del equipo que pueden ampliarse
+  const teamPhotos = [
+    {
+      src: '/sequence/Team_SDT.webp',
+      alt: t('team.photos.campus_alt'),
+      title: 'ITBA Rocketry Team',
+      subtitle: t('team.photos.campus_subtitle'),
+      heightClass: 'h-[360px] lg:h-[440px]',
+    },
+    {
+      src: '/team_2.jpg',
+      alt: t('team.photos.cup_alt'),
+      title: t('team.photos.cup_title'),
+      subtitle: t('team.photos.cup_subtitle'),
+      heightClass: 'h-[300px] lg:h-[360px]',
+    },
+  ];
 
   return (
     <Section id="team" className="bg-gray-900/40">
@@ -76,14 +84,12 @@ export default function TeamSection() {
       <div className="text-center mb-16 lg:mb-20">
         <Reveal delay={0.1}>
           <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold tracking-tight mb-6">
-            Tecnología y talento trabajando en conjunto
+            {t('team.title')}
           </h2>
         </Reveal>
         <Reveal delay={0.2}>
           <p className="text-fluid-lg text-gray-400 max-w-3xl mx-auto">
-            Somos estudiantes del ITBA apasionados por la ingeniería aeroespacial.
-            Cada lanzamiento es el resultado de equipos coordinados de propulsión,
-            aviónica, estructuras, simulación y operaciones.
+            {t('team.description')}
           </p>
         </Reveal>
       </div>
@@ -92,19 +98,19 @@ export default function TeamSection() {
       <div className="space-y-10 lg:space-y-12">
         {/* Fila 1: Foto izquierda, texto derecha */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
-          <PhotoCard 
-            photo={teamPhotos[0]} 
-            priority 
+          <PhotoCard
+            photo={teamPhotos[0]}
+            priority
             lightbox={lightbox}
           />
-          <TextCard highlight={teamHighlights[0]} />
+          <TextCard highlight={teamHighlights[0]} stats={teamStats} />
         </div>
 
         {/* Fila 2: Texto izquierda, foto derecha */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           <TextCard highlight={teamHighlights[1]} />
-          <PhotoCard 
-            photo={teamPhotos[1]} 
+          <PhotoCard
+            photo={teamPhotos[1]}
             lightbox={lightbox}
           />
         </div>
@@ -134,7 +140,13 @@ export default function TeamSection() {
  */
 type PhotoCardProps = {
   /** Datos de la foto a mostrar */
-  photo: (typeof teamPhotos)[number];
+  photo: {
+    src: string;
+    alt: string;
+    title: string;
+    subtitle: string;
+    heightClass: string;
+  };
   /** Si es true, la imagen se carga con prioridad */
   priority?: boolean;
   /** Objeto con el estado y funciones del lightbox */
@@ -144,7 +156,7 @@ type PhotoCardProps = {
 /**
  * Componente que muestra una foto del equipo con capacidad de ampliarse.
  * Al hacer click en la foto, se abre el lightbox para verla en tamaño completo.
- * 
+ *
  * @param {PhotoCardProps} props - Props del componente
  */
 function PhotoCard({ photo, priority, lightbox }: PhotoCardProps) {
@@ -168,7 +180,7 @@ function PhotoCard({ photo, priority, lightbox }: PhotoCardProps) {
   /**
    * Maneja eventos de teclado para accesibilidad.
    * Permite abrir el lightbox con Enter o Space.
-   * 
+   *
    * @param {React.KeyboardEvent} e - Evento de teclado
    */
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -215,16 +227,22 @@ function PhotoCard({ photo, priority, lightbox }: PhotoCardProps) {
  */
 type TextCardProps = {
   /** Datos del highlight a mostrar */
-  highlight: (typeof teamHighlights)[number];
+  highlight: {
+    title: string;
+    description: string;
+    showStats?: boolean;
+    bullets?: string[];
+  };
+  stats?: { value: string; label: string }[];
 };
 
 /**
  * Componente que muestra una tarjeta de texto con información del equipo.
  * Puede incluir estadísticas o una lista de viñetas dependiendo del highlight.
- * 
+ *
  * @param {TextCardProps} props - Props del componente
  */
-function TextCard({ highlight }: TextCardProps) {
+function TextCard({ highlight, stats }: TextCardProps) {
   return (
     <Reveal delay={0.05}>
       <div className="bg-gray-900/60 backdrop-blur-md rounded-3xl p-8 lg:p-10 shadow-subtle border border-gray-800/60 text-left h-full flex flex-col justify-between">
@@ -236,9 +254,9 @@ function TextCard({ highlight }: TextCardProps) {
         </div>
 
         {/* Estadísticas del equipo */}
-        {highlight.showStats && (
+        {highlight.showStats && stats && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-gray-800/60 mt-8">
-            {teamStats.map((stat) => (
+            {stats.map((stat) => (
               <div key={stat.label}>
                 <p className="text-3xl font-bold text-white">
                   {stat.value}

@@ -13,32 +13,34 @@ import Section from '@/components/Section';
 import Reveal from '@/components/Reveal';
 import { gsap } from '@/lib/gsap';
 import { FaRocket, FaPlane, FaSatellite, FaParachuteBox } from 'react-icons/fa';
-
-const highlights = [
-  {
-    title: 'Propulsión Avanzada',
-    description: 'Motores Híbridos de desarrollo propio validados a través de ensayos de banco y simulación.',
-    icon: FaRocket,
-  },
-  {
-    title: 'Aerodinámica',
-    description: 'Diseño computacional CFD para máxima eficiencia y estabilidad en vuelo supersónico.',
-    icon: FaPlane,
-  },
-  {
-    title: 'Telemetría en Tiempo Real',
-    description: 'Sistemas de comunicación avanzados para monitoreo completo durante todas las fases del vuelo.',
-    icon: FaSatellite,
-  },
-  {
-    title: 'Recuperación Inteligente',
-    description: 'Sistema dual de paracaídas con despliegue automatizado basado en altitud y velocidad.',
-    icon: FaParachuteBox,
-  },
-];
+import { useLanguage } from '@/components/LanguageContext';
 
 export default function HighlightsSection() {
   const cardsRef = useRef<HTMLDivElement[]>([]);
+  const { t } = useLanguage();
+
+  const highlights = [
+    {
+      title: t('highlights.propulsion_title'),
+      description: t('highlights.propulsion_desc'),
+      icon: FaRocket,
+    },
+    {
+      title: t('highlights.aerodynamics_title'),
+      description: t('highlights.aerodynamics_desc'),
+      icon: FaPlane,
+    },
+    {
+      title: t('highlights.telemetry_title'),
+      description: t('highlights.telemetry_desc'),
+      icon: FaSatellite,
+    },
+    {
+      title: t('highlights.recovery_title'),
+      description: t('highlights.recovery_desc'),
+      icon: FaParachuteBox,
+    },
+  ];
 
   useEffect(() => {
     // Subtle parallax on scroll for cards
@@ -47,7 +49,7 @@ export default function HighlightsSection() {
 
     cardsRef.current.forEach((card, index) => {
       if (!card) return;
-      
+
       gsap.to(card, {
         y: -20 * (index % 2 === 0 ? 1 : -1),
         scrollTrigger: {
@@ -65,12 +67,12 @@ export default function HighlightsSection() {
       <div className="text-center mb-16 lg:mb-20">
         <Reveal>
           <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold tracking-tight mb-6">
-            Tecnología de punta
+            {t('highlights.title')}
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
           <p className="text-fluid-lg text-gray-400 max-w-2xl mx-auto">
-            Cada componente diseñado para alcanzar nuevos récords de altura y precisión.
+            {t('highlights.subtitle')}
           </p>
         </Reveal>
       </div>

@@ -13,6 +13,7 @@ import Section from '@/components/Section';
 import Reveal from '@/components/Reveal';
 import { useElementVisible } from '@/hooks/useElementVisible';
 import { useSequentialAnimation } from '@/hooks/useSequentialAnimation';
+import { useLanguage } from '@/components/LanguageContext';
 
 interface Sponsor {
   name: string;
@@ -24,44 +25,44 @@ const LOGO_SIZE = 500;
 
 // Array de auspiciantes
 const sponsors: Sponsor[] = [
-  { 
-    name: 'Blue Origin', 
+  {
+    name: 'Blue Origin',
     logo: '/sequence/sponsors/Blue_Origin.webp'
   },
-  { 
-    name: 'Virgin Galactic', 
+  {
+    name: 'Virgin Galactic',
     logo: '/sequence/sponsors/Virgin_Galactic.webp'
   },
-  { 
-    name: 'Northrop Grumman', 
+  {
+    name: 'Northrop Grumman',
     logo: '/sequence/sponsors/Northrop_Grumman.webp'
   },
-  { 
-    name: 'Aerojet Rocketdyne', 
+  {
+    name: 'Aerojet Rocketdyne',
     logo: '/sequence/sponsors/Aerojet_Rocketdyne.webp'
   },
-  { 
-    name: 'Honeywell', 
+  {
+    name: 'Honeywell',
     logo: '/sequence/sponsors/Honeywell.webp'
   },
-  { 
-    name: 'Los Alamos National Laboratory', 
+  {
+    name: 'Los Alamos National Laboratory',
     logo: '/sequence/sponsors/Los_Alamos.webp'
   },
-  { 
-    name: 'Marotta', 
+  {
+    name: 'Marotta',
     logo: '/sequence/sponsors/Marotta.webp'
   },
-  { 
-    name: 'Sandia National Laboratories', 
+  {
+    name: 'Sandia National Laboratories',
     logo: '/sequence/sponsors/Sandia.webp'
   },
-  { 
-    name: 'ANSYS', 
+  {
+    name: 'ANSYS',
     logo: '/sequence/sponsors/ANSYS.webp'
   },
-  { 
-    name: 'SolidWorks', 
+  {
+    name: 'SolidWorks',
     logo: '/sequence/sponsors/SolidWorks.webp'
   },
 ];
@@ -70,11 +71,12 @@ const sponsors: Sponsor[] = [
 
 export default function SponsorsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isVisible = useElementVisible({ 
-    elementRef: sectionRef, 
-    threshold: 0.1 
+  const isVisible = useElementVisible({
+    elementRef: sectionRef,
+    threshold: 0.1
   });
-  
+  const { t } = useLanguage();
+
   const { visibleItems, start } = useSequentialAnimation({
     totalItems: sponsors.length,
     startOnMount: false,
@@ -99,13 +101,13 @@ export default function SponsorsSection() {
       <div ref={sectionRef} className="max-w-6xl mx-auto">
         <Reveal>
           <h2 className="text-fluid-4xl lg:text-fluid-5xl font-bold tracking-tight mb-6 lg:mb-8 text-center">
-            Auspiciantes
+            {t('sponsors.title')}
           </h2>
         </Reveal>
 
         <Reveal delay={0.1}>
           <p className="text-fluid-lg text-gray-400 mb-12 lg:mb-16 text-center max-w-2xl mx-auto">
-            Empresas e instituciones que apoyan nuestro proyecto y hacen posible la innovación.
+            {t('sponsors.description')}
           </p>
         </Reveal>
 
@@ -122,8 +124,8 @@ export default function SponsorsSection() {
                   aspect-square
                   p-4 lg:p-6
                   transition-all duration-1000 ease-out
-                  ${isLogoVisible 
-                    ? 'opacity-100 scale-100 translate-y-0' 
+                  ${isLogoVisible
+                    ? 'opacity-100 scale-100 translate-y-0'
                     : 'opacity-0 scale-90 translate-y-8'
                   }
                 `}
@@ -135,7 +137,7 @@ export default function SponsorsSection() {
                     width={LOGO_SIZE}
                     height={LOGO_SIZE}
                     className="object-contain w-full h-full"
-                    style={{ 
+                    style={{
                       maxWidth: '100%',
                       maxHeight: '100%',
                       width: 'auto',

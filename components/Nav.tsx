@@ -11,10 +11,12 @@ import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
+import { useLanguage } from '@/components/LanguageContext';
 
 export default function Nav() {
   const [isScrolled, setIsScrolled] = useState(false);
   const scrollTo = useSmoothScroll();
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +26,10 @@ export default function Nav() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'es' ? 'en' : 'es');
+  };
 
   return (
     <header
@@ -44,7 +50,7 @@ export default function Nav() {
               "flex items-center focus-ring rounded-lg px-2 -ml-2 transition-all duration-700 ease-in-out",
               "gap-3"
             )}
-            aria-label="ITBA Rocketry Team - Inicio"
+            aria-label={t('nav.home_aria')}
           >
             <div className="relative w-16 h-16 md:w-20 md:h-20 pointer-events-none overflow-hidden">
               <Image
@@ -62,21 +68,38 @@ export default function Nav() {
             </span>
           </a>
 
-          {/* CTA Button */}
-          <a
-            href="#cta"
-            onClick={(e) => scrollTo(e, 'cta')}
-            className={clsx(
-              "btn-primary transition-all duration-700 ease-in-out",
-              "flex items-center justify-center",
-              "px-2.5 py-2 md:px-4 md:py-2.5",
-              "text-xs md:text-base",
-              "whitespace-nowrap"
-            )}
-            aria-label="Conocer más sobre ITBA Rocketry Team"
-          >
-            Conocer más
-          </a>
+          <div className="flex items-center gap-4">
+            {/* CTA Button */}
+            <a
+              href="#cta"
+              onClick={(e) => scrollTo(e, 'cta')}
+              className={clsx(
+                "btn-primary transition-all duration-700 ease-in-out",
+                "flex items-center justify-center",
+                "px-2.5 py-2 md:px-4 md:py-2.5",
+                "text-xs md:text-base",
+                "whitespace-nowrap"
+              )}
+              aria-label={t('nav.cta_aria')}
+            >
+              {t('nav.cta')}
+            </a>
+
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              className={clsx(
+                "btn-ghost transition-all duration-300 ease-in-out",
+                "flex items-center justify-center",
+                "px-2 py-1 md:px-3 md:py-1.5",
+                "text-xs md:text-sm font-medium",
+                "border border-white/10 hover:bg-white/10 rounded-lg"
+              )}
+              aria-label="Toggle language"
+            >
+              {language === 'en' ? 'EN 🇺🇸' : 'ES 🇦🇷'}
+            </button>
+          </div>
         </div>
       </nav>
     </header>

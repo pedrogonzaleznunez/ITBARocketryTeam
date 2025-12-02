@@ -16,6 +16,7 @@ import CanvasSequence from '@/components/CanvasSequence';
 import { gsap } from '@/lib/gsap';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { useGoogleCalendar } from '@/hooks/useGoogleCalendar';
+import { useLanguage } from '@/components/LanguageContext';
 
 import Countdown from '../Countdown';
 import SocialLinks from '../SocialLinks';
@@ -26,12 +27,13 @@ export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
   const isScrollingRef = useRef(false);
+  const { t } = useLanguage();
 
   // Configuración del evento
-  const eventDate = new Date('2026-06-15T00:00:00'); 
+  const eventDate = new Date('2026-06-15T00:00:00');
   const eventEndDate = new Date('2026-06-15T23:59:59'); // Mismo día, fin del día
-  const eventTitle = 'Próxima Misión - ITBA Rocketry Team';
-const eventDescription = 'Lanzamiento oficial del cohete del ITBA Rocketry Team en la Intercollegiate Rocket Engineering Competition (IREC) 2026. Actividades del día: preparación en el sitio de lanzamiento, revisiones finales, integración de carga útil, y vuelo en la ventana asignada.';
+  const eventTitle = t('hero.event_title');
+  const eventDescription = t('hero.event_description');
   const eventLocation = 'Spaceport America, Truth or Consequences, New Mexico, USA';
 
   const calendarLink = useGoogleCalendar({
@@ -86,7 +88,7 @@ const eventDescription = 'Lanzamiento oficial del cohete del ITBA Rocketry Team 
 
     // Crear un objeto proxy para animar el scroll con GSAP
     const scrollObj = { y: startPosition };
-    
+
     gsap.to(scrollObj, {
       y: targetPosition,
       duration: 1, // Scroll más lento
@@ -109,7 +111,7 @@ const eventDescription = 'Lanzamiento oficial del cohete del ITBA Rocketry Team 
       <div
         ref={backgroundRef}
         className="pointer-events-none absolute inset-0 -z-10 bg-cover will-change-transform"
-        style={{ 
+        style={{
           backgroundImage: 'url(/sequence/Launch.webp)',
           backgroundPosition: 'center 15%',
         }}
@@ -130,22 +132,21 @@ const eventDescription = 'Lanzamiento oficial del cohete del ITBA Rocketry Team 
                 className="text-fluid-5xl lg:text-fluid-7xl font-bold leading-[1.1] tracking-tight text-[#f5f5f7]"
                 style={{ textShadow: '0 8px 24px rgba(0,0,0,0.35)' }}
               >
-                Más allá de
+                {t('hero.title_1')}
                 <br />
-                <span className="text-gradient">los límites</span>
+                <span className="text-gradient">{t('hero.title_2')}</span>
               </h1>
-              
+
               <p
                 className="text-fluid-lg lg:text-fluid-xl text-[rgba(245,245,247,0.85)] max-w-xl leading-relaxed"
                 style={{ textShadow: '0 6px 20px rgba(0,0,0,0.35)' }}
               >
-                Diseñamos y construimos cohetes de alta potencia. 
-                Innovación, precisión y pasión por la exploración espacial.
+                {t('hero.description')}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a href="#first-stars-divider" onClick={scrollToFirstDivider} className="btn-primary">
-                  Ver nuestro trabajo
+                  {t('hero.cta_work')}
                 </a>
                 {/* <a href="#highlights" onClick={(e) => scrollTo(e, 'highlights')} className="btn-ghost">
                   Conocer más
@@ -158,10 +159,10 @@ const eventDescription = 'Lanzamiento oficial del cohete del ITBA Rocketry Team 
                 <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
                   <div className="text-center mb-4">
                     <p className="text-sm md:text-base text-white/90 uppercase tracking-wider mb-2">
-                      Próxima Misión
+                      {t('hero.next_mission')}
                     </p>
                     <p className="text-lg md:text-xl font-semibold text-white">
-                      15 de Junio, 2026
+                      {t('hero.date')}
                     </p>
                   </div>
                   <Countdown targetDate={eventDate} />
@@ -173,7 +174,7 @@ const eventDescription = 'Lanzamiento oficial del cohete del ITBA Rocketry Team 
                       className="w-full flex items-center justify-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl px-4 py-3 text-sm md:text-base font-medium text-white transition-all duration-200 border border-white/30 hover:border-white/40 shadow-lg hover:shadow-xl"
                     >
                       <FaCalendarAlt className="w-5 h-5" />
-                      Agregar a mi calendario
+                      {t('hero.add_calendar')}
                     </a>
                   </div>
                 </div>
