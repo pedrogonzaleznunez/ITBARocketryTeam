@@ -27,7 +27,7 @@ export default function SocialLinks({ variant = 'footer', className = '' }: Soci
       icon: FaLinkedin,
     },
     {
-      href: 'mailto:info@itbarocketry.com',
+      href: 'mailto:rocketry@itba.edu.ar',
       label: 'Email',
       icon: FaEnvelope,
     },
