@@ -28,8 +28,8 @@ export default function HeroSection() {
   const isScrollingRef = useRef(false);
 
   // Configuración del evento
-  const eventDate = new Date('2026-02-01T00:00:00');
-  const eventEndDate = new Date('2026-02-01T23:59:59'); // Mismo día, fin del día
+  const eventDate = new Date('2026-06-15T00:00:00'); 
+  const eventEndDate = new Date('2026-06-15T23:59:59'); // Mismo día, fin del día
   const eventTitle = 'Próxima Misión - ITBA Rocketry Team';
   const eventDescription = ''; // Agregar descripción
   const eventLocation = ''; // Agregar ubicación
@@ -161,7 +161,7 @@ export default function HeroSection() {
                       Próxima Misión
                     </p>
                     <p className="text-lg md:text-xl font-semibold text-white">
-                      1 de Febrero, 2026
+                      15 de Junio, 2026
                     </p>
                   </div>
                   <Countdown targetDate={eventDate} />

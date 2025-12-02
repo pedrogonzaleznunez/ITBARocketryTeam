@@ -28,7 +28,7 @@ export default function CTASection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a
-              href="mailto:info@itbarocketry.com"
+              href="mailto:rocketry@itba.edu.ar"
               className="group relative btn-base bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 text-lg font-semibold overflow-hidden"
             >
               <span className="relative z-10">Contáctanos</span>
