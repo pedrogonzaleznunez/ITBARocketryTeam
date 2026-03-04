@@ -189,7 +189,7 @@ export const translations = {
         specs: {
             design_title: 'Design',
             design_desc: 'Precision 3D CAD modeling with full structural analysis. Each component optimized for minimum weight and maximum strength.',
-            desing_stat: '1000+ hours',
+            design_stat: '1000+ hours',
             design_label: 'of engineering',
             construction_title: 'Construction',
             construction_desc: 'Manufacturing with aerospace materials: carbon fiber, 7075 aluminum, and advanced composites.',
