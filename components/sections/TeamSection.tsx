@@ -37,8 +37,8 @@ export default function TeamSection() {
 
   // Datos de estadísticas del equipo
   const teamStats = [
-    { value: '30+', label: t('team.stats.active_members') },
-    { value: '6', label: t('team.stats.subteams') },
+    { value: '60+', label: t('team.stats.active_members') },
+    { value: '7', label: t('team.stats.subteams') },
     { value: '1000+', label: t('team.stats.test_hours') },
   ];
 

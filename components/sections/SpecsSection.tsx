@@ -24,25 +24,25 @@ export default function SpecsSection() {
     {
       title: t('specs.design_title'),
       description: t('specs.design_desc'),
-      stat: '1000+ hours',
+      stat: t('specs.design_stat'),
       label: t('specs.design_label'),
     },
     {
       title: t('specs.construction_title'),
       description: t('specs.construction_desc'),
-      stat: '50+ pieces',
+      stat: t('specs.construction_stat'),
       label: t('specs.construction_label'),
     },
     {
       title: t('specs.testing_title'),
       description: t('specs.testing_desc'),
-      stat: '100% safety',
+      stat: t('specs.testing_stat'),
       label: t('specs.testing_label'),
     },
     {
       title: t('specs.launch_title'),
       description: t('specs.launch_desc'),
-      stat: '3.5 km',
+      stat: t('specs.launch_stat'),
       label: t('specs.launch_label'),
     },
   ];

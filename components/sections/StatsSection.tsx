@@ -37,7 +37,7 @@ export default function StatsSection() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
             <div>
               <AnimatedNumber
-                value="50+"
+                value="4"
                 duration={duration_stats}
                 className="text-4xl lg:text-5xl font-bold text-gradient mb-2"
               />
@@ -47,7 +47,7 @@ export default function StatsSection() {
             </div>
             <div>
               <AnimatedNumber
-                value="3.5km"
+                value="3km"
                 duration={duration_stats}
                 className="text-4xl lg:text-5xl font-bold text-gradient mb-2"
               />
@@ -57,7 +57,7 @@ export default function StatsSection() {
             </div>
             <div>
               <AnimatedNumber
-                value="25+"
+                value="63"
                 duration={duration_stats}
                 className="text-4xl lg:text-5xl font-bold text-gradient mb-2"
               />

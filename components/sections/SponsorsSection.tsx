@@ -26,44 +26,12 @@ const LOGO_SIZE = 500;
 // Array de auspiciantes
 const sponsors: Sponsor[] = [
   {
-    name: 'Blue Origin',
-    logo: '/sequence/sponsors/Blue_Origin.webp'
+    name: 'ITBA',
+    logo: '/sequence/sponsors/itba_logo.webp'
   },
   {
-    name: 'Virgin Galactic',
-    logo: '/sequence/sponsors/Virgin_Galactic.webp'
-  },
-  {
-    name: 'Northrop Grumman',
-    logo: '/sequence/sponsors/Northrop_Grumman.webp'
-  },
-  {
-    name: 'Aerojet Rocketdyne',
-    logo: '/sequence/sponsors/Aerojet_Rocketdyne.webp'
-  },
-  {
-    name: 'Honeywell',
-    logo: '/sequence/sponsors/Honeywell.webp'
-  },
-  {
-    name: 'Los Alamos National Laboratory',
-    logo: '/sequence/sponsors/Los_Alamos.webp'
-  },
-  {
-    name: 'Marotta',
-    logo: '/sequence/sponsors/Marotta.webp'
-  },
-  {
-    name: 'Sandia National Laboratories',
-    logo: '/sequence/sponsors/Sandia.webp'
-  },
-  {
-    name: 'ANSYS',
-    logo: '/sequence/sponsors/ANSYS.webp'
-  },
-  {
-    name: 'SolidWorks',
-    logo: '/sequence/sponsors/SolidWorks.webp'
+    name: 'Prentex',
+    logo: '/sequence/sponsors/prentex_logo.webp'
   },
 ];
 
