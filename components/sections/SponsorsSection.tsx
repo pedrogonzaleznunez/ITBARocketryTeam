@@ -80,7 +80,7 @@ export default function SponsorsSection() {
         </Reveal>
 
         {/* Grid de Auspiciantes - Grid responsive */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-8">
+        <div className="flex flex-wrap justify-center gap-6 lg:gap-8 items-center">
           {sponsors.map((sponsor, index) => {
             const isLogoVisible = visibleItems.has(index);
 
