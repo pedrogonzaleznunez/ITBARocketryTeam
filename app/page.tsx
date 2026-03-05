@@ -61,7 +61,9 @@ export default function Home() {
       <footer className="py-8 border-t border-gray-800">
         <div className="container-custom">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-            <p>&copy; 2025 ITBA Rocketry Team. Todos los derechos reservados.</p>
+```tsx
+            <p>&copy; {new Date().getFullYear()} ITBA Rocketry Team. Todos los derechos reservados.</p>
+```
             <SocialLinks variant="footer" />
           </div>
         </div>
